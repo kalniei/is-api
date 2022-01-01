@@ -1,4 +1,3 @@
 <?php
-
-header('content-type: application/json');
-echo 'troll';
+  require_once ('helpers/headers.php');
+  echo 'troll';
