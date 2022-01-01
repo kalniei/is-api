@@ -1,19 +1,15 @@
 {
-  "functions": {
-    "api/index.php": {
-      "runtime": "vercel-php@0.4.0"
-    },
-     "api/getEmailTemplates.php": {
-      "runtime": "vercel-php@0.4.0"
-    },
-     "api/test.php": {
-      "runtime": "vercel-php@0.4.0"
-    }
-  },
+  "version": 2,
+  "builds": [
+      {
+          "src": "./index.js",
+          "use": "@vercel/node"
+      }
+  ],
   "routes": [
-    { "src": "/",  "dest": "/api/index.php" },
-    { "src": "/get-email-templates",  "dest": "/api/getEmailTemplates.php" },
-    { "src": "/test",  "dest": "/api/test.php" }
+      {
+          "src": "/(.*)",
+          "dest": "/"
+      }
   ]
 }
-
