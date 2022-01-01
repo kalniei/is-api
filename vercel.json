@@ -13,7 +13,7 @@
   "routes": [
     { "src": "/",  "dest": "/api/index.php" },
     { "src": "/get-email-templates",  "dest": "/api/getEmailTemplates.php" },
-    { "src": "/api/test",  "dest": "/api/test.php" }
+    { "src": "/test",  "dest": "/api/test.php" }
   ]
 }
 
