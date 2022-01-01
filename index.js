@@ -15,8 +15,8 @@ app.use(express.json({ extended: false }));
 const product = require("./api/product");
 app.use("/api/product", product);
 
-const test = require("./api/test");
-app.use("/api/test", test);
+const getEmailTemplates = require("./api/getEmailTemplates");
+app.use("/api/getEmailTemplates", getEmailTemplates);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => console.log(`Server is running in port ${PORT}`));
