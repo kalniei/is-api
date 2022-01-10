@@ -1,4 +1,6 @@
-exports.getDbConnection = async () => {
+module.exports = getDbConnection;
+
+async function getDbConnection() {
   const mysql = require("mysql");
   require("dotenv").config();
 
@@ -9,4 +11,4 @@ exports.getDbConnection = async () => {
     database: process.env.DB_NAME,
   });
   return await con;
-};
+}

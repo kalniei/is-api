@@ -16,19 +16,22 @@ app.use(function (req, res, next) {
 
 app.use(express.json({ extended: false }));
 
-const product = require("./api/product");
-app.use("/api/product", product);
-
 // EMAIL MANAGER
-const addNewEmailTemplate = require("./api/addNewEmailTemplate");
+const addNewEmailTemplate = require("./api/email-templates/addNewEmailTemplate");
 app.use("/api/addNewEmailTemplate", addNewEmailTemplate);
 
-const updateEmailTemplate = require("./api/updateEmailTemplate");
+const updateEmailTemplate = require("./api/email-templates/updateEmailTemplate");
 app.use("/api/updateEmailTemplate", updateEmailTemplate);
 
-const getEmailTemplates = require("./api/getEmailTemplates");
+const getEmailTemplates = require("./api/email-templates/getEmailTemplates");
 app.use("/api/getEmailTemplates", getEmailTemplates);
 // end of EMAIL MANAGER
+
+// EMAIL SENDER
+const sendEmail = require("./api/email-sender/sendEmail");
+app.use("/api/sendEmail", sendEmail);
+
+// end of EMAIL SENDER
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => console.log(`Server is running in port ${PORT}`));

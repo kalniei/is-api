@@ -1,15 +1,15 @@
 exports.updateRowInTable = async (res, tableName, idSet, changedData) => {
-  const errorModule = require("./returnError");
-  const connectionModule = require("./getDbConnection");
-  const con = await connectionModule.getDbConnection();
+  const returnError = require("./returnError");
+  const getDbConnection = require("./getDbConnection");
+  const con = await getDbConnection();
 
   try {
     con.connect(function (err) {
-      if (err) return errorModule.returnError(res, err);
+      if (err) return returnError(res, err);
       const sql = `UPDATE ${tableName} SET ? WHERE ?`;
 
       con.query(sql, [changedData, idSet], function (err, result) {
-        if (err) return errorModule.returnError(res, err);
+        if (err) return returnError(res, err);
         res.json({
           status: 200,
           message: "Success",
@@ -18,6 +18,6 @@ exports.updateRowInTable = async (res, tableName, idSet, changedData) => {
       });
     });
   } catch (error) {
-    return errorModule.returnError(res, error);
+    return returnError(res, error);
   }
 };

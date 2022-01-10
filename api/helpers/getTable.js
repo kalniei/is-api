@@ -1,14 +1,16 @@
-exports.getTable = async (res, tableName) => {
-  const errorModule = require("./returnError");
-  const connectionModule = require("./getDbConnection");
+module.exports = getTable;
 
-  const con = await connectionModule.getDbConnection();
+async function getTable(res, tableName) {
+  const returnError = require("./returnError");
+  const getDbConnection = require("./getDbConnection");
+
+  const con = await getDbConnection();
 
   try {
     con.connect(function (err) {
-      if (err) return errorModule.returnError(res, err);
+      if (err) return returnError(res, err);
       con.query(`SELECT * FROM ${tableName}`, function (err, result, fields) {
-        if (err) return errorModule.returnError(res, err);
+        if (err) return returnError(res, err);
         res.json({
           status: 200,
           message: "Success",
@@ -17,6 +19,6 @@ exports.getTable = async (res, tableName) => {
       });
     });
   } catch (error) {
-    return errorModule.returnError(res, error);
+    return returnError(res, error);
   }
-};
+}
