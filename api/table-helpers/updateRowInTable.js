@@ -1,15 +1,14 @@
-module.exports = getTable;
-
-async function getTable(res, tableName) {
-  const returnError = require("./returnError");
-  const getDbConnection = require("./getDbConnection");
-
+exports.updateRowInTable = async (res, tableName, idSet, changedData) => {
+  const returnError = require("../common-helpers/returnError");
+  const getDbConnection = require("../common-helpers/getDbConnection");
   const con = await getDbConnection();
 
   try {
     con.connect(function (err) {
       if (err) return returnError(res, err);
-      con.query(`SELECT * FROM ${tableName}`, function (err, result, fields) {
+      const sql = `UPDATE ${tableName} SET ? WHERE ?`;
+
+      con.query(sql, [changedData, idSet], function (err, result) {
         if (err) return returnError(res, err);
         res.json({
           status: 200,
@@ -21,4 +20,4 @@ async function getTable(res, tableName) {
   } catch (error) {
     return returnError(res, error);
   }
-}
+};

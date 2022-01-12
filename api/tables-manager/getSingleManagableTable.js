@@ -3,7 +3,7 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   const getTable = require("../table-helpers/getTable");
-  getTable(res, "admin_email_templates");
+  getTable(res, req.body.table_name);
 });
 
 module.exports = router;

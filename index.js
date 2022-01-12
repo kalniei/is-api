@@ -16,7 +16,7 @@ app.use(function (req, res, next) {
 
 app.use(express.json({ extended: false }));
 
-// EMAIL MANAGER
+// --- EMAIL MANAGER ---
 const addNewEmailTemplate = require("./api/email-templates/addNewEmailTemplate");
 app.use("/api/addNewEmailTemplate", addNewEmailTemplate);
 
@@ -25,13 +25,22 @@ app.use("/api/updateEmailTemplate", updateEmailTemplate);
 
 const getEmailTemplates = require("./api/email-templates/getEmailTemplates");
 app.use("/api/getEmailTemplates", getEmailTemplates);
-// end of EMAIL MANAGER
+// end of EMAIL MANAGER ---
 
-// EMAIL SENDER
+// --- EMAIL SENDER
 const sendEmail = require("./api/email-sender/sendEmail");
 app.use("/api/sendEmail", sendEmail);
 
-// end of EMAIL SENDER
+// --- end of EMAIL SENDER ---
+
+//--- TABLES MANAGER---
+const getAllManagableTables = require("./api/tables-manager/getAllManagableTables");
+app.use("/api/getAllManagableTables", getAllManagableTables);
+
+const getSingleManagableTable = require("./api/tables-manager/getSingleManagableTable");
+app.use("/api/getSingleManagableTable", getSingleManagableTable);
+
+// --- end of TABLES MANAGER ---
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => console.log(`Server is running in port ${PORT}`));

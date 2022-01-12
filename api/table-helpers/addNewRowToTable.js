@@ -1,8 +1,8 @@
 module.exports = addNewRowToTable;
 
 async function addNewRowToTable(res, tableName, tableColumnsStr, rowValuesStr) {
-  const returnError = require("./returnError");
-  const getDbConnection = require("./getDbConnection");
+  const returnError = require("../common-helpers/returnError");
+  const getDbConnection = require("../common-helpers/getDbConnection");
 
   const con = await getDbConnection();
 

@@ -3,7 +3,7 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
   const sendSingleEmail = require("./sendSingleEmail");
-  const returnError = require("../helpers/returnError");
+  const returnError = require("../common-helpers/returnError");
   try {
     await sendSingleEmail({
       from: "biuro@improsilesia.pl",
