@@ -37,8 +37,8 @@ app.use("/api/sendEmail", sendEmail);
 const getAllManagableTables = require("./api/tables-manager/getAllManagableTables");
 app.use("/api/getAllManagableTables", getAllManagableTables);
 
-const getSingleManagableTable = require("./api/tables-manager/getSingleManagableTable");
-app.use("/api/getSingleManagableTable", getSingleManagableTable);
+const getSingleTable = require("./api/tables-manager/getSingleTable");
+app.use("/api/getSingleTable", getSingleTable);
 
 // --- end of TABLES MANAGER ---
 

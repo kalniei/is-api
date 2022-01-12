@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+router.post("/", async (req, res) => {
   const getTable = require("../table-helpers/getTable");
   getTable(res, req.body.table_name);
 });
