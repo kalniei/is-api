@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 
 router.post("/", async (req, res) => {
-  const updateRowModule = require("../table-helpers/updateRowInTable");
-  updateRowModule.updateRowInTable(
+  const updateRowInTable = require("../table-helpers/updateRowInTable");
+  updateRowInTable(
     res,
     "admin_email_templates",
     { unique_id: req.body.id },

@@ -40,6 +40,11 @@ app.use("/api/getAllManagableTables", getAllManagableTables);
 const getSingleTable = require("./api/tables-manager/getSingleTable");
 app.use("/api/getSingleTable", getSingleTable);
 
+const deleteRowsFromTable = require("./api/tables-manager/deleteRowsFromTable");
+app.use("/api/deleteRowsFromTable", deleteRowsFromTable);
+
+const transferToGlobalWorkshopsTable = require("./api/tables-manager/transferToGlobalWorkshopsTable");
+app.use("/api/transferToGlobalWorkshopsTable", transferToGlobalWorkshopsTable);
 // --- end of TABLES MANAGER ---
 
 const PORT = process.env.PORT || 8080;
