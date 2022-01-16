@@ -55,6 +55,9 @@ app.use(
 const updateWorkshopRow = require("./api/tables-manager/updateWorkshopRow");
 app.use("/api/updateWorkshopRow", updateWorkshopRow);
 
+const addNewUserToTable = require("./api/tables-manager/addNewUserToTable");
+app.use("/api/addNewUserToTable", addNewUserToTable);
+
 // --- end of TABLES MANAGER ---
 
 const PORT = process.env.PORT || 8080;

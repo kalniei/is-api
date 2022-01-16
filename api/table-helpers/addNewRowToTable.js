@@ -4,15 +4,16 @@ async function addNewRowToTable(res, tableName, rowObject, callback) {
   const returnError = require("../common-helpers/returnError");
   const getDbConnection = require("../common-helpers/getDbConnection");
 
-  const con = await getDbConnection();
+  const pool = await getDbConnection();
 
   try {
-    con.connect(function (err) {
+    pool.getConnection(function (err, connection) {
       if (err) return returnError(res, err);
 
       const sql = `INSERT INTO ${tableName} SET ?`;
 
-      con.query(sql, rowObject, function (err, result) {
+      connection.query(sql, rowObject, function (err, result) {
+        connection.release();
         if (err) return returnError(res, err);
         if (res) {
           res.json({

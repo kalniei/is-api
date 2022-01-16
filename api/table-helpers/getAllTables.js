@@ -4,14 +4,15 @@ async function getAllTables(res) {
   const returnError = require("../common-helpers/returnError");
   const getDbConnection = require("../common-helpers/getDbConnection");
 
-  const con = await getDbConnection();
+  const pool = await getDbConnection();
 
   try {
-    con.connect(function (err) {
+    pool.getConnection(function (err, connection) {
       if (err) return returnError(res, err);
-      con.query(
+      connection.query(
         `SELECT * FROM information_schema.tables WHERE TABLE_NAME LIKE '%warsztaty%'`,
         function (err, result, fields) {
+          connection.release();
           if (err) return returnError(res, err);
           res.json({
             status: 200,

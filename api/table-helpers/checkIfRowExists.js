@@ -4,13 +4,14 @@ async function checkIfRowExists(tableName, rowObject, callback) {
   const returnError = require("../common-helpers/returnError");
   const getDbConnection = require("../common-helpers/getDbConnection");
 
-  const con = await getDbConnection();
+  const pool = await getDbConnection();
 
   try {
-    con.connect(function (err) {
+    pool.getConnection(function (err, connection) {
       if (err) return returnError(res, err);
       const sql = `SELECT * FROM ${tableName} WHERE mail = '${rowObject.mail}'`;
-      con.query(sql, function (err, result) {
+      connection.query(sql, function (err, result) {
+        connection.release();
         if (err) return returnError(res, err);
         callback(null, result, rowObject);
       });
