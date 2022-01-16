@@ -12,7 +12,7 @@ async function checkIfRowExists(tableName, rowObject, callback) {
       const sql = `SELECT * FROM ${tableName} WHERE mail = '${rowObject.mail}'`;
       con.query(sql, function (err, result) {
         if (err) return returnError(res, err);
-        callback(null, result);
+        callback(null, result, rowObject);
       });
     });
   } catch (error) {

@@ -45,6 +45,16 @@ app.use("/api/deleteRowsFromTable", deleteRowsFromTable);
 
 const transferToGlobalWorkshopsTable = require("./api/tables-manager/transferToGlobalWorkshopsTable");
 app.use("/api/transferToGlobalWorkshopsTable", transferToGlobalWorkshopsTable);
+
+const transferAndDeleteToGlobalWorkshopsTable = require("./api/tables-manager/transferAndDeleteToGlobalWorkshopsTable");
+app.use(
+  "/api/transferAndDeleteToGlobalWorkshopsTable",
+  transferAndDeleteToGlobalWorkshopsTable
+);
+
+const updateWorkshopRow = require("./api/tables-manager/updateWorkshopRow");
+app.use("/api/updateWorkshopRow", updateWorkshopRow);
+
 // --- end of TABLES MANAGER ---
 
 const PORT = process.env.PORT || 8080;

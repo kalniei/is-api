@@ -10,7 +10,7 @@ async function getAllTables(res) {
     con.connect(function (err) {
       if (err) return returnError(res, err);
       con.query(
-        `SELECT * FROM information_schema.table_constraints WHERE TABLE_NAME LIKE '%warsztaty%'`,
+        `SELECT * FROM information_schema.tables WHERE TABLE_NAME LIKE '%warsztaty%'`,
         function (err, result, fields) {
           if (err) return returnError(res, err);
           res.json({
