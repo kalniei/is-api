@@ -12,7 +12,7 @@ async function updateRowInTable(res, tableName, idSet, changedData, callback) {
       connection.query(sql, [changedData, idSet], function (err, result) {
         connection.release();
         if (err) return returnError(res, err);
-        if (res) {
+        if (!callback) {
           res.json({
             status: 200,
             message: "Success",

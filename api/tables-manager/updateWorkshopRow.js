@@ -7,7 +7,8 @@ router.post("/", async (req, res) => {
     res,
     req.body.table_name,
     { mail: req.body.id },
-    req.body.data
+    req.body.data,
+    false
   );
 });
 

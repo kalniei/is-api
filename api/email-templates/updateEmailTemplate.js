@@ -7,7 +7,8 @@ router.post("/", async (req, res) => {
     res,
     "admin_email_templates",
     { unique_id: req.body.id },
-    req.body.data
+    req.body.data,
+    false
   );
 });
 

@@ -20,7 +20,7 @@ router.post("/", async (req, res) => {
   const ifExistsCallback = (err, result, record) => {
     if (result.length > 0) {
       updateRowInTable(
-        false,
+        res,
         req.body.table_name_to,
         { mail: record.mail },
         record,
@@ -28,7 +28,7 @@ router.post("/", async (req, res) => {
       );
     } else {
       addNewRowToTable(
-        false,
+        res,
         req.body.table_name_to,
         { ...record },
         finishUpdatecallback

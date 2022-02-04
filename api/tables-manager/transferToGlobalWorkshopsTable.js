@@ -8,7 +8,7 @@ router.post("/", async (req, res) => {
 
   let callbackCount = 0;
 
-  const finishUpdatecallback = (err, result) => {
+  const finishUpdateCallback = (err, result) => {
     callbackCount = callbackCount + 1;
     if (callbackCount === req.body.row_object.length) {
       res.json({
@@ -31,18 +31,18 @@ router.post("/", async (req, res) => {
   const ifExistsCallback = (err, result, record) => {
     if (result.length > 0) {
       updateRowInTable(
-        false,
+        res,
         req.body.table_name_to,
         { mail: record.mail },
         record,
-        finishUpdatecallback
+        finishUpdateCallback
       );
     } else {
       addNewRowToTable(
-        false,
+        res,
         req.body.table_name_to,
         { ...record },
-        finishUpdatecallback
+        finishUpdateCallback
       );
     }
   };

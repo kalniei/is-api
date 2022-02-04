@@ -15,7 +15,7 @@ async function addNewRowToTable(res, tableName, rowObject, callback) {
       connection.query(sql, rowObject, function (err, result) {
         connection.release();
         if (err) return returnError(res, err);
-        if (res) {
+        if (!callback) {
           res.json({
             status: 200,
             message: "Success",

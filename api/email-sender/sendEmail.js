@@ -7,7 +7,7 @@ router.post("/", async (req, res) => {
 
   try {
     await sendSingleEmail({
-      from: "biuro@improsilesia.pl",
+      from: '"Impro Silesia" biuro@improsilesia.pl',
       to: req.body.to,
       subject: req.body.subject,
       html: req.body.content,

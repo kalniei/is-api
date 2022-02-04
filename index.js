@@ -60,5 +60,11 @@ app.use("/api/addNewUserToTable", addNewUserToTable);
 
 // --- end of TABLES MANAGER ---
 
+// --- WORKSHOPS MANAGER
+const addBasicWorkshop = require("./api/workshops-manager/addBasicWorkshop");
+app.use("/api/addBasicWorkshop", addBasicWorkshop);
+
+// --- end of WORKSHOPS MANAGER ---
+
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => console.log(`Server is running in port ${PORT}`));
