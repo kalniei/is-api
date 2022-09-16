@@ -13,7 +13,7 @@ router.post("/", async (req, res) => {
     callbackCount = callbackCount + 1;
     if (callbackCount === req.body.row_object.length) {
       const mailArr = req.body.row_object.map((x) => x.mail);
-      deleteRow(res, req.body.table_name_from, mailArr);
+      deleteRow(res, req.body.table_name_from, mailArr, 'mail');
     }
   };
 

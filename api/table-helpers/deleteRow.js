@@ -1,6 +1,6 @@
 module.exports = deleteRow;
 
-async function deleteRow(res, tableName, keyValues) {
+async function deleteRow(res, tableName, keyValues, columnName) {
   const returnError = require("../common-helpers/returnError");
   const getDbConnection = require("../common-helpers/getDbConnection");
 
@@ -9,7 +9,7 @@ async function deleteRow(res, tableName, keyValues) {
   try {
     pool.getConnection(function (err, connection) {
       if (err) return returnError(res, err);
-      const sql = `DELETE FROM ${tableName} WHERE mail IN (?)`;
+      const sql = `DELETE FROM ${tableName} WHERE ${columnName} IN (?)`;
       const values = keyValues;
 
       connection.query(sql, [values], function (err, result) {

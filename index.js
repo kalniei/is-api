@@ -23,6 +23,9 @@ app.use(express.json({ extended: false }));
 const updateEvent = require("./api/events-manager/updateEvent");
 app.use("/api/updateEvent", updateEvent);
 
+const deleteEvents = require("./api/events-manager/deleteEvents");
+app.use("/api/deleteEvents", deleteEvents);
+
 const getEventTable = require("./api/events-manager/getEventTable");
 app.use("/api/getEventTable", getEventTable);
 
