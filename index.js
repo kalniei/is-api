@@ -17,8 +17,8 @@ app.use(function (req, res, next) {
 app.use(express.json({ extended: false }));
 
 // --- EVENTS MANAGER ---
-// const addNewEvent = require("./api/events-manager/addNewEvent");
-// app.use("/api/addNewEvent", addNewEvent);
+const addNewEvent = require("./api/events-manager/addNewEvent");
+app.use("/api/addNewEvent", addNewEvent);
 
 const updateEvent = require("./api/events-manager/updateEvent");
 app.use("/api/updateEvent", updateEvent);
