@@ -16,6 +16,15 @@ app.use(function (req, res, next) {
 
 app.use(express.json({ extended: false }));
 
+// --- EVENTS MANAGER ---
+// const addNewEmailTemplate = require("./api/email-templates/addNewEmailTemplate");
+// app.use("/api/addNewEmailTemplate", addNewEmailTemplate);
+
+const updateEvent = require("./api/email-templates/updateEvent");
+app.use("/api/updateEvent", updateEvent);
+
+// end of EVENTS MANAGER ---
+
 // --- EMAIL MANAGER ---
 const addNewEmailTemplate = require("./api/email-templates/addNewEmailTemplate");
 app.use("/api/addNewEmailTemplate", addNewEmailTemplate);
