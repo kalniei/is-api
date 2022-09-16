@@ -23,6 +23,9 @@ app.use(express.json({ extended: false }));
 const updateEvent = require("./api/events-manager/updateEvent");
 app.use("/api/updateEvent", updateEvent);
 
+const getEventTable = require("./api/events-manager/getEventTable");
+app.use("/api/getEventTable", getEventTable);
+
 // end of EVENTS MANAGER ---
 
 // --- EMAIL MANAGER ---
