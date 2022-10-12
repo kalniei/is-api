@@ -10,10 +10,11 @@ async function getTable(res, tableName, uniqie_name, unique_value) {
     pool.getConnection(function (err, connection) {
       if (err) return returnError(res, err);
       connection.query(
-        `SELECT * FROM ${tableName} WHERE ${uniqie_name} = ${unique_value}`,
+        `SELECT * FROM ${tableName} WHERE ${uniqie_name} = '${unique_value}'`,
         function (err, result, fields) {
           connection.release();
-          if (err) return returnError(res, err);
+          if (err || !result.length) return returnError(res, !result.length ? {
+            sqlMessage: 'Nie ma takich warsztatów w naszej bazie'} : err);
           res.json({
             status: 200,
             message: "Success",
