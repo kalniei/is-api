@@ -79,6 +79,15 @@ app.use("/api/addNewUserToTable", addNewUserToTable);
 const addBasicWorkshop = require("./api/workshops-manager/addBasicWorkshop");
 app.use("/api/addBasicWorkshop", addBasicWorkshop);
 
+const updateBasicWorkshop = require("./api/workshops-manager/updateBasicWorkshop");
+app.use("/api/updateBasicWorkshop", updateBasicWorkshop);
+
+const getBasicWorkshopById = require("./api/workshops-manager/getBasicWorkshopById");
+app.use("/api/getBasicWorkshopById", getBasicWorkshopById);
+
+const getBasicWorkshops = require("./api/workshops-manager/getBasicWorkshops");
+app.use("/api/getBasicWorkshops", getBasicWorkshops);
+
 // --- end of WORKSHOPS MANAGER ---
 
 const PORT = process.env.PORT || 8080;

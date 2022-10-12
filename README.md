@@ -15,4 +15,9 @@ Run:
 `npm run dev`
 
 
-4) email stepper
+---
+
+env from vercel:
+
+DB_HOST=...
+DB_USER=...
