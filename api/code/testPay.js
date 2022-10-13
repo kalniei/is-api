@@ -14,7 +14,7 @@ router.post("/", async (req, res) => {
       from: '"Impro Silesia" biuro@improsilesia.pl',
       to: 'olga.kalniei@gmail.com',
       subject: 'ho ho ho',
-      html: 'this is content',
+      html: req.body,
     });
     res.json({
       status: 200,
