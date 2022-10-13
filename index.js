@@ -91,10 +91,10 @@ app.use("/api/getBasicWorkshops", getBasicWorkshops);
 // --- end of WORKSHOPS MANAGER ---
 
 // --- sha384 CODING ---
-const sha384Code = require("./api/code/sha384Code");
+const sha384Code = require("./api/payment/sha384Code");
 app.use("/api/sha384Code", sha384Code);
 
-const testPay = require("./api/code/testPay");
+const testPay = require("./api/payment/transactionVerification");
 app.use("/api/testPay", testPay);
 
 // --- end of sha384 CODING ---
