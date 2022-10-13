@@ -3,8 +3,6 @@ const router = express.Router();
 
 
 router.post("/", async (req, res) => {
-  console.log(1111111);
-  console.log(req.body);
   const sendSingleEmail = require("../email-sender/sendSingleEmail");
 
   const returnError = require("../common-helpers/returnError");
@@ -13,7 +11,7 @@ router.post("/", async (req, res) => {
     await sendSingleEmail({
       from: '"Impro Silesia" biuro@improsilesia.pl',
       to: 'olga.kalniei@gmail.com',
-      subject: 'ho ho ho',
+      subject: 'THIS IS NEW EMAIL',
       html: req.body,
     });
     res.json({
