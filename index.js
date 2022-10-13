@@ -90,5 +90,14 @@ app.use("/api/getBasicWorkshops", getBasicWorkshops);
 
 // --- end of WORKSHOPS MANAGER ---
 
+// --- sha384 CODING ---
+const sha384Code = require("./api/code/sha384Code");
+app.use("/api/sha384Code", sha384Code);
+
+const testPay = require("./api/code/testPay");
+app.use("/api/testPay", testPay);
+
+// --- end of sha384 CODING ---
+
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => console.log(`Server is running in port ${PORT}`));
