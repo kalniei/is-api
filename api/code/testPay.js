@@ -12,7 +12,7 @@ router.post("/", async (req, res) => {
       from: '"Impro Silesia" biuro@improsilesia.pl',
       to: 'olga.kalniei@gmail.com',
       subject: 'THIS IS NEW EMAIL',
-      html: req.body,
+      html: `this is request body: ${JSON.stringify(req.body)}`,
     });
     res.json({
       status: 200,
