@@ -94,8 +94,8 @@ app.use("/api/getBasicWorkshops", getBasicWorkshops);
 const sha384Code = require("./api/payment/sha384Code");
 app.use("/api/sha384Code", sha384Code);
 
-const testPay = require("./api/payment/transactionVerification");
-app.use("/api/testPay", testPay);
+const transactionVerification = require("./api/payment/transactionVerification");
+app.use("/api/transactionVerification", transactionVerification);
 
 // --- end of sha384 CODING ---
 
