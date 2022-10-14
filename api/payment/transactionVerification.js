@@ -6,20 +6,6 @@ require("dotenv").config();
 
 router.post("/", async (req, res) => {
 
-
-  const sendSingleEmail = require("../email-sender/sendSingleEmail");
-  try {
-    await sendSingleEmail({
-      from: '"Impro Silesia" biuro@improsilesia.pl',
-      to: 'olga.kalniei@gmail.com',
-      subject: 'THIS IS NEW EMAIL',
-      html: `this is request body: ${JSON.stringify(req.body)}`,
-    });
-   
-  } catch (error) {
-  }
-
-
   const returnError = require("../common-helpers/returnError");
 
   const basicAuth =
@@ -41,17 +27,44 @@ router.post("/", async (req, res) => {
         crc: process.env.CRC_KEY,
       })).digest("hex")
     };
+
+    const sendSingleEmail = require("../email-sender/sendSingleEmail");
+    try {
+      await sendSingleEmail({
+        from: '"Impro Silesia" biuro@improsilesia.pl',
+        to: 'olga.kalniei@gmail.com',
+        subject: 'THIS email with data',
+        html: `this is temp data: ${JSON.stringify(tempData)} and this is auth token: ${basicAuth} and this is link: ${process.env.PAYMENT_API}`,
+      });
+     
+    } catch (error) {
+    }
     
     axios.put(process.env.PAYMENT_API + '/v1/transaction/verify', tempData, {
       headers: { Authorization: basicAuth }
     })
     .then((response) => {
+      sendSingleEmail({
+          from: '"Impro Silesia" biuro@improsilesia.pl',
+          to: 'olga.kalniei@gmail.com',
+          subject: 'this is email on success',
+          html: `no i?`,
+        });
+
       res.json({
         status: 200,
         message: "Verification of the payment succeed!",
         data: null,
       });
     }).catch((error) => {
+
+      sendSingleEmail({
+        from: '"Impro Silesia" biuro@improsilesia.pl',
+        to: 'olga.kalniei@gmail.com',
+        subject: 'this is email on error',
+        html: `${JSON.stringify(error)}`,
+      });
+
       return returnError(res, error);
     });
 });
