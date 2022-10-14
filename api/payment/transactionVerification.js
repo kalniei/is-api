@@ -8,9 +8,6 @@ router.post("/", async (req, res) => {
 
 
   const sendSingleEmail = require("../email-sender/sendSingleEmail");
-
-  const returnError = require("../common-helpers/returnError");
-
   try {
     await sendSingleEmail({
       from: '"Impro Silesia" biuro@improsilesia.pl',
