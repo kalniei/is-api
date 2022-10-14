@@ -8,9 +8,35 @@ router.post("/", async (req, res) => {
 
   const returnError = require("../common-helpers/returnError");
 
+  const sendSingleEmail = require("../email-sender/sendSingleEmail");
+
+
+  try {
+    await sendSingleEmail({
+      from: '"Impro Silesia" biuro@improsilesia.pl',
+      to: 'olga.kalniei@gmail.com',
+      subject: 'THIS email with body',
+      html: `this is temp data: ${JSON.stringify(req.body)}`,
+    });
+   
+  } catch (error) {
+  }
+  
+
   const basicAuth =
     'Basic ' +
-    btoa(req.body.merchantId + ':' + process.env.SECRET_ID);
+    btoa(req.body.merchantId + ':' + '546850019766733902dd563fb07fafde');
+
+    try {
+      await sendSingleEmail({
+        from: '"Impro Silesia" biuro@improsilesia.pl',
+        to: 'olga.kalniei@gmail.com',
+        subject: 'THIS email with basicAuth',
+        html: `this is temp data: ${JSON.stringify(basicAuth)}`,
+      });
+     
+    } catch (error) {
+    }
       
     const tempData = {
       merchantId: req.body.merchantId,
@@ -24,23 +50,22 @@ router.post("/", async (req, res) => {
         orderId: req.body.orderId,
         amount: req.body.amount,
         currency: req.body.currency,
-        crc: process.env.CRC_KEY,
+        crc: '0bdf9c814c299616',
       })).digest("hex")
     };
 
-    const sendSingleEmail = require("../email-sender/sendSingleEmail");
     try {
       await sendSingleEmail({
         from: '"Impro Silesia" biuro@improsilesia.pl',
         to: 'olga.kalniei@gmail.com',
         subject: 'THIS email with data',
-        html: `this is temp data: ${JSON.stringify(tempData)} and this is auth token: ${basicAuth} and this is link: ${process.env.PAYMENT_API}`,
+        html: `this is temp data: ${JSON.stringify(tempData)} and this is auth token: ${basicAuth} `,
       });
      
     } catch (error) {
     }
     
-    axios.put(process.env.PAYMENT_API + '/v1/transaction/verify', tempData, {
+    axios.put('https://sandbox.przelewy24.pl/api' + '/v1/transaction/verify', tempData, {
       headers: { Authorization: basicAuth }
     })
     .then((response) => {
