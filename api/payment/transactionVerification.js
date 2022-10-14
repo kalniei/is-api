@@ -21,9 +21,8 @@ router.post("/", async (req, res) => {
    
   // } catch (error) {
   // }
-  
 
-  const basicAuth = 'Basic ' + req.body.merchantId + ':' + '546850019766733902dd563fb07fafde';
+  const basicAuth = 'Basic ' + Buffer.from(req.body.merchantId + ':' + '546850019766733902dd563fb07fafde').toString('base64');
 
     try {
       await sendSingleEmail({
