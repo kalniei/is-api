@@ -23,7 +23,7 @@ router.post("/", async (req, res) => {
   // }
   
 
-  const basicAuth = 'Basic ' + btoa(req.body.merchantId + ':' + '546850019766733902dd563fb07fafde');
+  const basicAuth = 'Basic ' + req.body.merchantId + ':' + '546850019766733902dd563fb07fafde';
 
     try {
       await sendSingleEmail({
